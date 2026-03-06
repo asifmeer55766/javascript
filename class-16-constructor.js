@@ -90,3 +90,29 @@ BankAccount.prototype.transfer = function (accNumber, amount) {
 const asif = new BankAccount("Asif Hussain", "12345", 4000);
 const ali = new BankAccount("Ali", "6789", 4000);
 console.log(asif, asif.__proto__);
+
+// the new apparoch now
+class BankAccount {
+  constructor(name, balance) {
+    this.name = name;
+    this.balance = balance;
+  }
+
+  // This automatically goes on the prototype
+  deposit(amount) {
+    this.balance += amount;
+    console.log(`${this.name} deposited ${amount}`);
+  }
+
+  withdraw(amount) {
+    if (amount <= this.balance) {
+      this.balance -= amount;
+      console.log(`${this.name} withdrew ${amount}`);
+    } else {
+      console.log("Insufficient balance");
+    }
+  }
+}
+
+const asif = new BankAccount("Asif Hussain", 1000);
+asif.deposit(500);
